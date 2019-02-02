@@ -4,14 +4,16 @@ var con = mysql.createConnection({
     host: "localhost",
     port: "8889",
     user: "root",
-    password: "root"
+    password: "root",
+    database: "my_nodejs"
 });
 
 con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
-    con.query("CREATE DATABASE my_nodejs", function (err, result){
+    var sql = "ALTER TABLE customers ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY";
+    con.query(sql, function (err, result){
         if (err) throw err;
-        console.log("Database created");
-    }); 
+        console.log("Table created");
+    });
 });
