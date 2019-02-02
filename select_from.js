@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-    host: "localhost",
+    host: 'localhost',
     port: '8889',
     user: 'root',
     password: 'root',
@@ -10,9 +10,9 @@ var con = mysql.createConnection({
 
 con.connect(function (err) {
     if (err) throw err;
-    var sql = "INSERT INTO customers (name, adress) VALUES ('Michelle', 'Blue Village 1')";
-    con.query(sql, function (err, result) {
+    con.query("Select id, name, adress FROM customers", function (err,result,fields) {
         if (err) throw err;
-        console.log("1 record inserted, ID: " + result.insertId);    
+        console.log(fields[1].db);
     });
 });
+
